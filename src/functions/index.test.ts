@@ -2,7 +2,7 @@ import { ttest } from '@core_chlbri/test';
 import * as TDD from './index';
 
 describe('Return 0', () => {
-  ttest({
+  ttest.concurrent({
     func: TDD.return0,
     tests: [
       {
@@ -17,7 +17,7 @@ describe('Return 0', () => {
 });
 
 describe('Return 1', () => {
-  ttest({
+  ttest.concurrent({
     func: TDD.return1,
     tests: [
       {
@@ -32,7 +32,7 @@ describe('Return 1', () => {
 });
 
 describe('Return True', () => {
-  ttest({
+  ttest.concurrent({
     func: TDD.returnTrue,
     tests: [
       {
@@ -47,7 +47,7 @@ describe('Return True', () => {
 });
 
 describe('Return False', () => {
-  ttest({
+  ttest.concurrent({
     func: TDD.returnFalse,
     tests: [
       {
@@ -62,7 +62,7 @@ describe('Return False', () => {
 });
 
 describe('Return Undefined', () => {
-  ttest({
+  ttest.concurrent({
     func: TDD.returnUndefined,
     tests: [
       {
@@ -79,7 +79,7 @@ describe('Return Undefined', () => {
 //TODO Create a class to handle empty Expected
 
 describe('Return Null', () => {
-  ttest({
+  ttest.concurrent({
     func: TDD.returnNull,
     tests: [
       {
@@ -94,7 +94,7 @@ describe('Return Null', () => {
 });
 
 describe('Return Empty String', () => {
-  ttest({
+  ttest.concurrent({
     func: TDD.returnEmptyString,
     tests: [
       {
@@ -108,19 +108,59 @@ describe('Return Empty String', () => {
   });
 });
 
+describe('Return array of true', () => {
+  ttest.concurrent({
+    func: TDD.returnTrueArray,
+    tests: [
+      {
+        args: 10,
+        expected: [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+        ],
+      },
+      {
+        args: 12,
+        expected: [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+        ],
+      },
+    ],
+  });
+});
+
 describe('getLiterals', () => {
   const func = TDD.getLiterals;
-  test('empty args', () => {
+  test.concurrent('empty args', () => {
     const expected = { object: {}, array: [] };
     const received = func();
     expect(received).toStrictEqual(expected);
   });
-  test('Args [4, 6]', () => {
+  test.concurrent('Args [4, 6]', () => {
     const expected = { array: [4, 6], object: { 4: 4, 6: 6 } };
     const received = func(4, 6);
     expect(received).toStrictEqual(expected);
   });
-  test("Args ['all', 'string']", () => {
+  test.concurrent("Args ['all', 'string']", () => {
     const expected = {
       array: ['all', 'string'],
       object: { all: 'all', string: 'string' },
@@ -128,7 +168,7 @@ describe('getLiterals', () => {
     const received = func('all', 'string');
     expect(received).toStrictEqual(expected);
   });
-  test("Args ['mix', 10, 40, 'string']", () => {
+  test.concurrent("Args ['mix', 10, 40, 'string']", () => {
     const expected = {
       array: ['mix', 10, 40, 'string'],
       object: { mix: 'mix', 10: 10, 40: 40, string: 'string' },
@@ -140,22 +180,22 @@ describe('getLiterals', () => {
 
 describe('getLiteralsInObject', () => {
   const func = TDD.getLiteralsInObject;
-  test('empty args', () => {
+  test.concurrent('empty args', () => {
     const expected = {};
     const received = func();
     expect(received).toStrictEqual(expected);
   });
-  test('Args [4, 6]', () => {
+  test.concurrent('Args [4, 6]', () => {
     const expected = { 4: 4, 6: 6 };
     const received = func(4, 6);
     expect(received).toStrictEqual(expected);
   });
-  test("Args ['all', 'string']", () => {
+  test.concurrent("Args ['all', 'string']", () => {
     const expected = { all: 'all', string: 'string' };
     const received = func('all', 'string');
     expect(received).toStrictEqual(expected);
   });
-  test("Args ['mix', 10, 40, 'string']", () => {
+  test.concurrent("Args ['mix', 10, 40, 'string']", () => {
     const expected = { mix: 'mix', 10: 10, 40: 40, string: 'string' };
     const received = func('mix', 10, 40, 'string');
     expect(received).toStrictEqual(expected);

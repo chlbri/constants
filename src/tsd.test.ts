@@ -1,4 +1,3 @@
-import { ttest } from '@core_chlbri/test';
 import { log } from '@core_chlbri/core';
 import tsd from 'tsd';
 
