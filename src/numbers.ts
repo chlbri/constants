@@ -263,6 +263,3 @@ export const COLORSHEX = getLiterals(
   254,
   255,
 );
-
-
-console.log('COLORSHEX', '=>', JSON.stringify(COLORSHEX, null, 2));
