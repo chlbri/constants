@@ -1,30 +1,13 @@
----
 # package.json repo à changer
 
 tasks:
   - name: Configuration
     before: npm install -g ts-node
-    init: |
-      shopt -s dotglob
-      bash .gitpod-config/bash.sh
-      node .gitpod-config/bash.js
-      git push
-      gp sync-done build
-
-  - name: Creation of branches
-    init: |
-      gp sync-await build
-      git checkout -b prod
-      git push -u origin prod
-      git checkout -b staging
-      git push -u origin staging
-      git checkout -b upgrade
-      git push -u origin upgrade
-      git checkout main
+    init: yarn install
+    command: jest
 
 vscode:
   extensions:
-    - ms-azuretools.vscode-docker
     - github.vscode-pull-request-github
     - eamodio.gitlens
     - graphql.vscode-graphql
